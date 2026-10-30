@@ -1,0 +1,38 @@
+{
+  "version": "0.1.20260901",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.4812 sec.",
+  "cost": 0.0101,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10301234-1234-0066-0000-abcdef012345",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.4011 sec.",
+      "cost": 0.0101,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "..."
+      ],
+      "data": {},
+      "result": [
+        {
+          "se_type": "google",
+          "seed_keywords": [
+            "seo tools"
+          ],
+          "location_code": 2840,
+          "language_code": "en",
+          "total_count": 0,
+          "items_count": 0,
+          "offset": 0,
+          "items": null
+        }
+      ]
+    }
+  ]
+}

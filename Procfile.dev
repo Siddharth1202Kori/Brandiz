@@ -1,0 +1,4 @@
+api: uv run uvicorn seomaster_api.app:create_app --factory --reload --port 8000 --reload-dir apps --reload-dir packages
+worker: uv run celery -A seomaster_worker.celery_app worker -Q maintenance,rank,audit,gsc,fetch --loglevel=INFO --pool=threads --concurrency=4
+beat: uv run celery -A seomaster_worker.celery_app beat --loglevel=INFO --schedule .celerybeat-schedule
+web: pnpm --filter web dev

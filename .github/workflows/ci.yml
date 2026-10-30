@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: gitleaks
+        run: |
+          docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.30.1 git /repo --redact --exit-code 1
+
+  python:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: seomaster
+          POSTGRES_PASSWORD: seomaster
+          POSTGRES_DB: seomaster_test
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U seomaster" --health-interval 3s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: --health-cmd "redis-cli ping" --health-interval 3s --health-retries 20
+      clickhouse:
+        image: clickhouse/clickhouse-server:25.8-alpine
+        env:
+          CLICKHOUSE_USER: seomaster
+          CLICKHOUSE_PASSWORD: seomaster
+          CLICKHOUSE_DB: seomaster
+          CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+        ports: ["8123:8123"]
+        options: >-
+          --health-cmd "wget -qO- http://127.0.0.1:8123/ping || exit 1"
+          --health-interval 3s --health-retries 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
+      - run: uv run pytest --cov=packages --cov=apps --cov-report=term-missing
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter web typecheck
+      - run: pnpm --filter web lint
+      - run: pnpm --filter web build

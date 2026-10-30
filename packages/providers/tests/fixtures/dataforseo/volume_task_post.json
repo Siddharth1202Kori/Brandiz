@@ -1,0 +1,25 @@
+{
+  "version": "0.1.20260901",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.4812 sec.",
+  "cost": 0.05,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "11011200-1535-0110-0000-1a2b3c4d5e6f",
+      "status_code": 20100,
+      "status_message": "Task Created.",
+      "time": "0.4011 sec.",
+      "cost": 0.05,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "..."
+      ],
+      "data": {},
+      "result": null
+    }
+  ]
+}

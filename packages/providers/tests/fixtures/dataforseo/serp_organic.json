@@ -1,0 +1,179 @@
+{
+  "version": "0.1.20260901",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.4812 sec.",
+  "cost": 0.002,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10301234-1234-0066-0000-abcdef012345",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.4011 sec.",
+      "cost": 0.002,
+      "result_count": 1,
+      "path": [
+        "v3",
+        "..."
+      ],
+      "data": {},
+      "result": [
+        {
+          "keyword": "seo tools",
+          "type": "organic",
+          "se_domain": "google.com",
+          "location_code": 2840,
+          "language_code": "en",
+          "check_url": "https://www.google.com/search?q=seo+tools",
+          "datetime": "2026-10-30 08:00:00 +00:00",
+          "spell": null,
+          "item_types": [
+            "organic",
+            "people_also_ask",
+            "video",
+            "organic",
+            "related_searches"
+          ],
+          "se_results_count": 1630000000,
+          "items_count": 14,
+          "items": [
+            {
+              "type": "people_also_ask",
+              "rank_group": 1,
+              "rank_absolute": 3,
+              "items": []
+            },
+            {
+              "type": "organic",
+              "rank_group": 3,
+              "rank_absolute": 4,
+              "position": "left",
+              "domain": "www.site3.com",
+              "title": "Result 3",
+              "url": "https://www.site3.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 1,
+              "rank_absolute": 1,
+              "position": "left",
+              "domain": "www.site1.com",
+              "title": "Result 1",
+              "url": "https://www.site1.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 2,
+              "rank_absolute": 2,
+              "position": "left",
+              "domain": "www.site2.com",
+              "title": "Result 2",
+              "url": "https://www.site2.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 4,
+              "rank_absolute": 5,
+              "position": "left",
+              "domain": "www.site4.com",
+              "title": "Result 4",
+              "url": "https://www.site4.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 5,
+              "rank_absolute": 6,
+              "position": "left",
+              "domain": "www.site5.com",
+              "title": "Result 5",
+              "url": "https://www.site5.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 6,
+              "rank_absolute": 7,
+              "position": "left",
+              "domain": "www.site6.com",
+              "title": "Result 6",
+              "url": "https://www.site6.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 7,
+              "rank_absolute": 8,
+              "position": "left",
+              "domain": "www.site7.com",
+              "title": "Result 7",
+              "url": "https://www.site7.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 8,
+              "rank_absolute": 9,
+              "position": "left",
+              "domain": "www.site8.com",
+              "title": "Result 8",
+              "url": "https://www.site8.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 9,
+              "rank_absolute": 10,
+              "position": "left",
+              "domain": "www.site9.com",
+              "title": "Result 9",
+              "url": "https://www.site9.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 10,
+              "rank_absolute": 11,
+              "position": "left",
+              "domain": "www.site10.com",
+              "title": "Result 10",
+              "url": "https://www.site10.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 11,
+              "rank_absolute": 12,
+              "position": "left",
+              "domain": "www.site11.com",
+              "title": "Result 11",
+              "url": "https://www.site11.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "organic",
+              "rank_group": 12,
+              "rank_absolute": 13,
+              "position": "left",
+              "domain": "www.site12.com",
+              "title": "Result 12",
+              "url": "https://www.site12.com/seo-tools",
+              "description": "..."
+            },
+            {
+              "type": "video",
+              "rank_group": 1,
+              "rank_absolute": 8,
+              "items": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

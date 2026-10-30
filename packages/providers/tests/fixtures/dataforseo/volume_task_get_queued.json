@@ -1,0 +1,25 @@
+{
+  "version": "0.1.20260901",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.4812 sec.",
+  "cost": 0,
+  "tasks_count": 1,
+  "tasks_error": 1,
+  "tasks": [
+    {
+      "id": "10301234-1234-0066-0000-abcdef012345",
+      "status_code": 40602,
+      "status_message": "Task In Queue.",
+      "time": "0.4011 sec.",
+      "cost": 0,
+      "result_count": 0,
+      "path": [
+        "v3",
+        "..."
+      ],
+      "data": {},
+      "result": null
+    }
+  ]
+}

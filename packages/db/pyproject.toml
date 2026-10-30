@@ -1,0 +1,25 @@
+[project]
+name = "seomaster-db"
+version = "0.1.0"
+description = "Postgres models/migrations and ClickHouse schema"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "seomaster-core",
+    "sqlalchemy[asyncio]>=2.0.36",
+    "asyncpg>=0.30",
+    "alembic>=1.14",
+    "clickhouse-connect[async]>=0.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/seomaster_db"]
+
+[tool.uv.sources]
+seomaster-core = { workspace = true }
+
+[tool.hatch.build]
+dev-mode-dirs = ["src"]

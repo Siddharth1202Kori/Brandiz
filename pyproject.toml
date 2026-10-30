@@ -1,0 +1,73 @@
+[project]
+name = "seomaster"
+version = "0.1.0"
+description = "SeoMaster monorepo (uv workspace root)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "seomaster-core",
+    "seomaster-db",
+    "seomaster-providers",
+    "seomaster-api",
+    "seomaster-worker",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = [
+    "packages/core",
+    "packages/db",
+    "packages/providers",
+    "apps/api",
+    "apps/worker",
+]
+
+[tool.uv.sources]
+seomaster-core = { workspace = true }
+seomaster-db = { workspace = true }
+seomaster-providers = { workspace = true }
+seomaster-api = { workspace = true }
+seomaster-worker = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5.0",
+    "ruff>=0.7",
+    "mypy>=1.13",
+    "honcho>=2.0",
+    "pre-commit>=4.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "ASYNC", "S", "SIM", "RUF"]
+ignore = ["S101"]  # assert is fine in tests
+
+[tool.ruff.lint.isort]
+known-first-party = ["seomaster_core", "seomaster_db", "seomaster_providers", "seomaster_api", "seomaster_worker"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S105", "S106"]
+"**/migrations/**" = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+ignore_missing_imports = true
+files = ["packages/core/src", "packages/providers/src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+testpaths = ["packages", "apps"]
+markers = ["integration: needs docker-compose services (postgres, redis, clickhouse)"]
+addopts = "-ra --import-mode=importlib"
+filterwarnings = ["ignore::DeprecationWarning:authlib.*", "ignore:The httpx module is deprecated"]

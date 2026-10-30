@@ -1,0 +1,59 @@
+# Local development datastores. Prod equivalents: Neon (postgres), Upstash (cache redis),
+# Oracle VM (broker redis + clickhouse). See docs/03-seomaster-blueprint.md §14.
+name: seomaster
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: seomaster
+      POSTGRES_PASSWORD: seomaster
+      POSTGRES_DB: seomaster
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U seomaster"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports: ["6379:6379"]
+    volumes: [redisdata:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:25.8-alpine
+    environment:
+      CLICKHOUSE_USER: seomaster
+      CLICKHOUSE_PASSWORD: seomaster
+      CLICKHOUSE_DB: seomaster
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ports: ["8123:8123", "9000:9000"]
+    volumes: [chdata:/var/lib/clickhouse]
+    ulimits:
+      nofile: { soft: 262144, hard: 262144 }
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8123/ping || exit 1"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+
+  # Local inbox: every email the app sends lands here (http://localhost:8025). Prod uses SMTP
+  # of a real provider (Brevo / Resend) configured via SMTP_* env vars.
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports: ["1025:1025", "8025:8025"]
+
+volumes:
+  pgdata:
+  redisdata:
+  chdata:

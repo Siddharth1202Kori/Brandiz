@@ -1,0 +1,2618 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Brandiz API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/healthz": {
+      "get": {
+        "tags": ["health"],
+        "summary": "Healthz",
+        "operationId": "healthz_api_v1_healthz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Healthz Api V1 Healthz Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/healthz": {
+      "get": {
+        "tags": ["health"],
+        "summary": "Healthz",
+        "operationId": "healthz_healthz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Healthz Healthz Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/signup": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "Signup",
+        "operationId": "signup_api_v1_auth_signup_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_SignupOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/resend-verification": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "Resend Verification",
+        "description": "Always 202 so the endpoint can't be used to discover which emails have accounts.",
+        "operationId": "resend_verification_api_v1_auth_resend_verification_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_AcceptedOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/verify": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "Verify",
+        "operationId": "verify_api_v1_auth_verify_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_MeOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "Login",
+        "operationId": "login_api_v1_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_MeOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "Logout",
+        "operationId": "logout_api_v1_auth_logout_post",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/me": {
+      "get": {
+        "tags": ["auth"],
+        "summary": "Me",
+        "operationId": "me_api_v1_auth_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_MeOut_"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["auth"],
+        "summary": "Update Me",
+        "operationId": "update_me_api_v1_auth_me_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MePatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_MeOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects": {
+      "get": {
+        "tags": ["projects"],
+        "summary": "List Projects",
+        "operationId": "list_projects_api_v1_projects_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_list_ProjectOut__"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["projects"],
+        "summary": "Create Project",
+        "operationId": "create_project_api_v1_projects_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_ProjectOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}": {
+      "get": {
+        "tags": ["projects"],
+        "summary": "Get Project",
+        "operationId": "get_project_api_v1_projects__project_id__get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_ProjectOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["projects"],
+        "summary": "Update Project",
+        "operationId": "update_project_api_v1_projects__project_id__patch",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_ProjectOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["projects"],
+        "summary": "Delete Project",
+        "operationId": "delete_project_api_v1_projects__project_id__delete",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/limits/me": {
+      "get": {
+        "tags": ["limits"],
+        "summary": "My Limits",
+        "operationId": "my_limits_api_v1_limits_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_LimitsOut_"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keywords/overview": {
+      "get": {
+        "tags": ["keywords"],
+        "summary": "Overview",
+        "operationId": "overview_api_v1_keywords_overview_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Q"
+            }
+          },
+          {
+            "name": "market",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Market",
+              "default": "in"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_KeywordMetrics_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keywords/serp": {
+      "get": {
+        "tags": ["keywords"],
+        "summary": "Serp",
+        "operationId": "serp_api_v1_keywords_serp_get",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Q"
+            }
+          },
+          {
+            "name": "market",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Market",
+              "default": "in"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_SerpSnapshot_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keywords/ideas": {
+      "get": {
+        "tags": ["keywords"],
+        "summary": "Ideas",
+        "operationId": "ideas_api_v1_keywords_ideas_get",
+        "parameters": [
+          {
+            "name": "seed",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Seed"
+            }
+          },
+          {
+            "name": "market",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Market",
+              "default": "in"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": ["ideas", "related", "suggestions"],
+              "type": "string",
+              "default": "ideas",
+              "title": "Mode"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": ["volume", "kd", "cpc", "competition", "keyword"],
+              "type": "string",
+              "default": "volume",
+              "title": "Sort"
+            }
+          },
+          {
+            "name": "dir",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": ["asc", "desc"],
+              "type": "string",
+              "default": "desc",
+              "title": "Dir"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "volume_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Volume Min"
+            }
+          },
+          {
+            "name": "volume_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Volume Max"
+            }
+          },
+          {
+            "name": "kd_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kd Min"
+            }
+          },
+          {
+            "name": "kd_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kd Max"
+            }
+          },
+          {
+            "name": "cpc_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cpc Min"
+            }
+          },
+          {
+            "name": "cpc_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cpc Max"
+            }
+          },
+          {
+            "name": "words_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Words Min"
+            }
+          },
+          {
+            "name": "words_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Words Max"
+            }
+          },
+          {
+            "name": "intent",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Intent"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Include"
+            }
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Exclude"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_list_KeywordMetrics__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keywords/ideas/export.csv": {
+      "get": {
+        "tags": ["keywords"],
+        "summary": "Export Ideas",
+        "operationId": "export_ideas_api_v1_keywords_ideas_export_csv_get",
+        "parameters": [
+          {
+            "name": "seed",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Seed"
+            }
+          },
+          {
+            "name": "market",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/Market",
+              "default": "in"
+            }
+          },
+          {
+            "name": "mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": ["ideas", "related", "suggestions"],
+              "type": "string",
+              "default": "ideas",
+              "title": "Mode"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": ["volume", "kd", "cpc", "competition", "keyword"],
+              "type": "string",
+              "default": "volume",
+              "title": "Sort"
+            }
+          },
+          {
+            "name": "dir",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": ["asc", "desc"],
+              "type": "string",
+              "default": "desc",
+              "title": "Dir"
+            }
+          },
+          {
+            "name": "volume_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Volume Min"
+            }
+          },
+          {
+            "name": "volume_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Volume Max"
+            }
+          },
+          {
+            "name": "kd_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kd Min"
+            }
+          },
+          {
+            "name": "kd_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kd Max"
+            }
+          },
+          {
+            "name": "cpc_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cpc Min"
+            }
+          },
+          {
+            "name": "cpc_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cpc Max"
+            }
+          },
+          {
+            "name": "words_min",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Words Min"
+            }
+          },
+          {
+            "name": "words_max",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Words Max"
+            }
+          },
+          {
+            "name": "intent",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Intent"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Include"
+            }
+          },
+          {
+            "name": "exclude",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Exclude"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keywords/lists": {
+      "get": {
+        "tags": ["keyword lists"],
+        "summary": "List Lists",
+        "operationId": "list_lists_api_v1_keywords_lists_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_list_ListOut__"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["keyword lists"],
+        "summary": "Create List",
+        "operationId": "create_list_api_v1_keywords_lists_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ListIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_ListOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keywords/lists/{list_id}": {
+      "get": {
+        "tags": ["keyword lists"],
+        "summary": "Get List",
+        "operationId": "get_list_api_v1_keywords_lists__list_id__get",
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "List Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_ListDetail_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["keyword lists"],
+        "summary": "Delete List",
+        "operationId": "delete_list_api_v1_keywords_lists__list_id__delete",
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "List Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keywords/lists/{list_id}/items": {
+      "post": {
+        "tags": ["keyword lists"],
+        "summary": "Add Items",
+        "operationId": "add_items_api_v1_keywords_lists__list_id__items_post",
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "List Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemsIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_ItemsAdded_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keywords/lists/{list_id}/items/{item_id}": {
+      "delete": {
+        "tags": ["keyword lists"],
+        "summary": "Remove Item",
+        "operationId": "remove_item_api_v1_keywords_lists__list_id__items__item_id__delete",
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "List Id"
+            }
+          },
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Item Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keywords/lists/{list_id}/export.csv": {
+      "get": {
+        "tags": ["keyword lists"],
+        "summary": "Export List",
+        "operationId": "export_list_api_v1_keywords_lists__list_id__export_csv_get",
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "List Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/usage": {
+      "get": {
+        "tags": ["admin"],
+        "summary": "Usage",
+        "operationId": "usage_api_v1_admin_usage_get",
+        "parameters": [
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 90,
+              "minimum": 1,
+              "default": 7,
+              "title": "Days"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_UsageOut_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AcceptedOut": {
+        "properties": {
+          "accepted": {
+            "type": "boolean",
+            "title": "Accepted",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "AcceptedOut"
+      },
+      "DayUsage": {
+        "properties": {
+          "day": {
+            "type": "string",
+            "title": "Day"
+          },
+          "views": {
+            "type": "integer",
+            "title": "Views"
+          },
+          "hit_rate": {
+            "type": "number",
+            "title": "Hit Rate"
+          },
+          "cost_usd": {
+            "type": "number",
+            "title": "Cost Usd"
+          }
+        },
+        "type": "object",
+        "required": ["day", "views", "hit_rate", "cost_usd"],
+        "title": "DayUsage"
+      },
+      "EndpointUsage": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "endpoint": {
+            "type": "string",
+            "title": "Endpoint"
+          },
+          "views": {
+            "type": "integer",
+            "title": "Views"
+          },
+          "cache_hits": {
+            "type": "integer",
+            "title": "Cache Hits"
+          },
+          "provider_calls": {
+            "type": "integer",
+            "title": "Provider Calls"
+          },
+          "hit_rate": {
+            "type": "number",
+            "title": "Hit Rate"
+          },
+          "cost_usd": {
+            "type": "number",
+            "title": "Cost Usd"
+          },
+          "cost_per_view_usd": {
+            "type": "number",
+            "title": "Cost Per View Usd"
+          },
+          "avg_latency_ms": {
+            "type": "number",
+            "title": "Avg Latency Ms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "provider",
+          "endpoint",
+          "views",
+          "cache_hits",
+          "provider_calls",
+          "hit_rate",
+          "cost_usd",
+          "cost_per_view_usd",
+          "avg_latency_ms"
+        ],
+        "title": "EndpointUsage"
+      },
+      "Envelope_AcceptedOut_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AcceptedOut"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[AcceptedOut]"
+      },
+      "Envelope_ItemsAdded_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ItemsAdded"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[ItemsAdded]"
+      },
+      "Envelope_KeywordMetrics_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/KeywordMetrics"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[KeywordMetrics]"
+      },
+      "Envelope_LimitsOut_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LimitsOut"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[LimitsOut]"
+      },
+      "Envelope_ListDetail_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ListDetail"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[ListDetail]"
+      },
+      "Envelope_ListOut_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ListOut"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[ListOut]"
+      },
+      "Envelope_MeOut_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/MeOut"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[MeOut]"
+      },
+      "Envelope_ProjectOut_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ProjectOut"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[ProjectOut]"
+      },
+      "Envelope_SerpSnapshot_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SerpSnapshot"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[SerpSnapshot]"
+      },
+      "Envelope_SignupOut_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SignupOut"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[SignupOut]"
+      },
+      "Envelope_UsageOut_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/UsageOut"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[UsageOut]"
+      },
+      "Envelope_list_KeywordMetrics__": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/KeywordMetrics"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[list[KeywordMetrics]]"
+      },
+      "Envelope_list_ListOut__": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/ListOut"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[list[ListOut]]"
+      },
+      "Envelope_list_ProjectOut__": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/ProjectOut"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "Envelope[list[ProjectOut]]"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ItemOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "keyword": {
+            "type": "string",
+            "title": "Keyword"
+          },
+          "volume": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Volume"
+          },
+          "kd": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kd"
+          },
+          "cpc": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cpc"
+          },
+          "competition": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Competition"
+          },
+          "intents": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Intents"
+          },
+          "metrics_updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metrics Updated At"
+          },
+          "added_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Added At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "keyword",
+          "volume",
+          "kd",
+          "cpc",
+          "competition",
+          "intents",
+          "metrics_updated_at",
+          "added_at"
+        ],
+        "title": "ItemOut"
+      },
+      "ItemsAdded": {
+        "properties": {
+          "added": {
+            "type": "integer",
+            "title": "Added"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": ["added", "total"],
+        "title": "ItemsAdded"
+      },
+      "ItemsIn": {
+        "properties": {
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 1000,
+            "minItems": 1,
+            "title": "Keywords"
+          }
+        },
+        "type": "object",
+        "required": ["keywords"],
+        "title": "ItemsIn"
+      },
+      "KeywordMetrics": {
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "title": "Keyword"
+          },
+          "market": {
+            "$ref": "#/components/schemas/Market"
+          },
+          "volume": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Volume"
+          },
+          "cpc": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cpc"
+          },
+          "competition": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Competition"
+          },
+          "kd": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Kd"
+          },
+          "intents": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Intents",
+            "default": []
+          },
+          "trend": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Trend",
+            "default": []
+          },
+          "trend_months": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Trend Months",
+            "default": []
+          },
+          "serp_features": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Serp Features",
+            "default": []
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "fetched_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Fetched At"
+          }
+        },
+        "type": "object",
+        "required": ["keyword", "market", "source", "fetched_at"],
+        "title": "KeywordMetrics"
+      },
+      "LimitOut": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "used": {
+            "type": "integer",
+            "title": "Used"
+          },
+          "max": {
+            "type": "integer",
+            "title": "Max"
+          },
+          "period": {
+            "type": "string",
+            "enum": ["day", "month", "total"],
+            "title": "Period"
+          }
+        },
+        "type": "object",
+        "required": ["name", "used", "max", "period"],
+        "title": "LimitOut"
+      },
+      "LimitsOut": {
+        "properties": {
+          "plan_id": {
+            "type": "string",
+            "title": "Plan Id"
+          },
+          "limits": {
+            "items": {
+              "$ref": "#/components/schemas/LimitOut"
+            },
+            "type": "array",
+            "title": "Limits"
+          }
+        },
+        "type": "object",
+        "required": ["plan_id", "limits"],
+        "title": "LimitsOut"
+      },
+      "ListDetail": {
+        "properties": {
+          "info": {
+            "$ref": "#/components/schemas/ListOut"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ItemOut"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": ["info", "items"],
+        "title": "ListDetail"
+      },
+      "ListIn": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "market": {
+            "$ref": "#/components/schemas/Market",
+            "default": "in"
+          }
+        },
+        "type": "object",
+        "required": ["name"],
+        "title": "ListIn"
+      },
+      "ListOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "market": {
+            "$ref": "#/components/schemas/Market"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "item_count": {
+            "type": "integer",
+            "title": "Item Count",
+            "default": 0
+          }
+        },
+        "type": "object",
+        "required": ["id", "name", "market", "created_at"],
+        "title": "ListOut"
+      },
+      "LoginIn": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 200,
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": ["email", "password"],
+        "title": "LoginIn"
+      },
+      "Market": {
+        "type": "string",
+        "enum": ["in", "us"],
+        "title": "Market"
+      },
+      "MeOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "email_verified": {
+            "type": "boolean",
+            "title": "Email Verified"
+          },
+          "market": {
+            "$ref": "#/components/schemas/Market"
+          },
+          "org": {
+            "$ref": "#/components/schemas/OrgOut"
+          }
+        },
+        "type": "object",
+        "required": ["id", "email", "name", "email_verified", "market", "org"],
+        "title": "MeOut"
+      },
+      "MePatch": {
+        "properties": {
+          "market": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Market"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "title": "MePatch"
+      },
+      "Meta": {
+        "properties": {
+          "limited": {
+            "type": "boolean",
+            "title": "Limited",
+            "default": false
+          },
+          "cached": {
+            "type": "boolean",
+            "title": "Cached",
+            "default": false
+          },
+          "stale": {
+            "type": "boolean",
+            "title": "Stale",
+            "default": false
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "fetched_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fetched At"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PageInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "Meta"
+      },
+      "OrgOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "plan_id": {
+            "type": "string",
+            "title": "Plan Id"
+          }
+        },
+        "type": "object",
+        "required": ["id", "name", "plan_id"],
+        "title": "OrgOut"
+      },
+      "PageInfo": {
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "title": "Offset"
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Limit"
+          },
+          "total": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": ["offset", "limit"],
+        "title": "PageInfo"
+      },
+      "ProjectIn": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "domain": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 3,
+            "title": "Domain"
+          },
+          "market": {
+            "$ref": "#/components/schemas/Market",
+            "default": "in"
+          }
+        },
+        "type": "object",
+        "required": ["name", "domain"],
+        "title": "ProjectIn"
+      },
+      "ProjectOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "domain": {
+            "type": "string",
+            "title": "Domain"
+          },
+          "market": {
+            "$ref": "#/components/schemas/Market"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": ["id", "name", "domain", "market", "created_at"],
+        "title": "ProjectOut"
+      },
+      "ProjectPatch": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "market": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Market"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "title": "ProjectPatch"
+      },
+      "RecentCall": {
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "endpoint": {
+            "type": "string",
+            "title": "Endpoint"
+          },
+          "cache_key": {
+            "type": "string",
+            "title": "Cache Key"
+          },
+          "cache_tier": {
+            "type": "string",
+            "title": "Cache Tier"
+          },
+          "cost_usd": {
+            "type": "number",
+            "title": "Cost Usd"
+          },
+          "latency_ms": {
+            "type": "integer",
+            "title": "Latency Ms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "created_at",
+          "provider",
+          "endpoint",
+          "cache_key",
+          "cache_tier",
+          "cost_usd",
+          "latency_ms"
+        ],
+        "title": "RecentCall"
+      },
+      "ResendIn": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          }
+        },
+        "type": "object",
+        "required": ["email"],
+        "title": "ResendIn"
+      },
+      "SerpItem": {
+        "properties": {
+          "position": {
+            "type": "integer",
+            "title": "Position"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "domain": {
+            "type": "string",
+            "title": "Domain"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          }
+        },
+        "type": "object",
+        "required": ["position", "url", "domain"],
+        "title": "SerpItem"
+      },
+      "SerpSnapshot": {
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "title": "Keyword"
+          },
+          "market": {
+            "$ref": "#/components/schemas/Market"
+          },
+          "device": {
+            "type": "string",
+            "title": "Device",
+            "default": "desktop"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SerpItem"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "features": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Features",
+            "default": []
+          },
+          "taken_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Taken At"
+          }
+        },
+        "type": "object",
+        "required": ["keyword", "market", "items", "taken_at"],
+        "title": "SerpSnapshot"
+      },
+      "SignupIn": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 10,
+            "title": "Password"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": ["email", "password"],
+        "title": "SignupIn"
+      },
+      "SignupOut": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "verification_required": {
+            "type": "boolean",
+            "title": "Verification Required",
+            "default": true
+          }
+        },
+        "type": "object",
+        "required": ["email"],
+        "title": "SignupOut"
+      },
+      "UsageOut": {
+        "properties": {
+          "days": {
+            "type": "integer",
+            "title": "Days"
+          },
+          "views": {
+            "type": "integer",
+            "title": "Views"
+          },
+          "hit_rate": {
+            "type": "number",
+            "title": "Hit Rate"
+          },
+          "cost_usd": {
+            "type": "number",
+            "title": "Cost Usd"
+          },
+          "cost_per_view_usd": {
+            "type": "number",
+            "title": "Cost Per View Usd"
+          },
+          "by_endpoint": {
+            "items": {
+              "$ref": "#/components/schemas/EndpointUsage"
+            },
+            "type": "array",
+            "title": "By Endpoint"
+          },
+          "by_day": {
+            "items": {
+              "$ref": "#/components/schemas/DayUsage"
+            },
+            "type": "array",
+            "title": "By Day"
+          },
+          "recent": {
+            "items": {
+              "$ref": "#/components/schemas/RecentCall"
+            },
+            "type": "array",
+            "title": "Recent"
+          }
+        },
+        "type": "object",
+        "required": [
+          "days",
+          "views",
+          "hit_rate",
+          "cost_usd",
+          "cost_per_view_usd",
+          "by_endpoint",
+          "by_day",
+          "recent"
+        ],
+        "title": "UsageOut"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
+      },
+      "VerifyIn": {
+        "properties": {
+          "token": {
+            "type": "string",
+            "title": "Token"
+          }
+        },
+        "type": "object",
+        "required": ["token"],
+        "title": "VerifyIn"
+      }
+    }
+  }
+}

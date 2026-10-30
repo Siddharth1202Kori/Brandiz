@@ -1,0 +1,109 @@
+{
+  "version": "0.1.20260901",
+  "status_code": 20000,
+  "status_message": "Ok.",
+  "time": "0.4812 sec.",
+  "cost": 0,
+  "tasks_count": 1,
+  "tasks_error": 0,
+  "tasks": [
+    {
+      "id": "10301234-1234-0066-0000-abcdef012345",
+      "status_code": 20000,
+      "status_message": "Ok.",
+      "time": "0.4011 sec.",
+      "cost": 0,
+      "result_count": 2,
+      "path": [
+        "v3",
+        "..."
+      ],
+      "data": {},
+      "result": [
+        {
+          "keyword": "Seo Tools",
+          "spell": null,
+          "location_code": 2356,
+          "language_code": "en",
+          "search_partners": false,
+          "competition": "HIGH",
+          "competition_index": 87,
+          "search_volume": 14800,
+          "low_top_of_page_bid": 0.4,
+          "high_top_of_page_bid": 2.1,
+          "cpc": 1.07,
+          "monthly_searches": [
+            {
+              "year": 2025,
+              "month": 10,
+              "search_volume": 14800
+            },
+            {
+              "year": 2025,
+              "month": 9,
+              "search_volume": 14810
+            },
+            {
+              "year": 2025,
+              "month": 8,
+              "search_volume": 14820
+            },
+            {
+              "year": 2025,
+              "month": 7,
+              "search_volume": 14830
+            },
+            {
+              "year": 2025,
+              "month": 6,
+              "search_volume": 14840
+            },
+            {
+              "year": 2025,
+              "month": 5,
+              "search_volume": 14850
+            },
+            {
+              "year": 2025,
+              "month": 4,
+              "search_volume": 14860
+            },
+            {
+              "year": 2025,
+              "month": 3,
+              "search_volume": 14870
+            },
+            {
+              "year": 2025,
+              "month": 2,
+              "search_volume": 14880
+            },
+            {
+              "year": 2025,
+              "month": 1,
+              "search_volume": 14890
+            },
+            {
+              "year": 2024,
+              "month": 12,
+              "search_volume": 14900
+            },
+            {
+              "year": 2024,
+              "month": 11,
+              "search_volume": 14910
+            }
+          ]
+        },
+        {
+          "keyword": "rare phrase",
+          "competition": null,
+          "competition_index": null,
+          "search_volume": null,
+          "cpc": null,
+          "monthly_searches": null
+        }
+      ]
+    }
+  ]
+}

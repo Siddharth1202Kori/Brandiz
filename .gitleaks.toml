@@ -1,0 +1,13 @@
+title = "SeoMaster gitleaks config"
+
+[extend]
+useDefault = true
+
+# REA evidence bundles identify scripts/resources by content hash (e.g. scr_<sha256>).
+# Those are fingerprints, not credentials. Both conditions must match, so a real key
+# placed in these files is still reported.
+[[allowlists]]
+description = "REA evidence content-hash identifiers"
+condition = "AND"
+paths = ['''^docs/evidence/.*\.json$''']
+regexes = ['''\b[a-z]{2,4}_[0-9a-f]{64}\b''']
